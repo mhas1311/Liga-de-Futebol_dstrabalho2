@@ -204,7 +204,7 @@
 .player-avatar {
   font-size: 3rem;
   margin-right: 15px;
-  background: linear-gradient(135deg, #6f42c1 0%, #6610f2 100%);
+  background: linear-gradient(135deg, #6f42c1 0%, #a167ff 100%);
   color: white;
   width: 60px;
   height: 60px;
@@ -454,67 +454,67 @@
     gap: 20px;
     text-align: center;
   }
-  
+
   .header-content h1 {
     font-size: 2rem;
   }
-  
+
   .header-actions {
     flex-direction: column;
     width: 100%;
   }
-  
+
   .btn-add,
   .btn-back {
     width: 100%;
     justify-content: center;
   }
-  
+
   .jogadores-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .content-wrapper {
     padding: 0 15px;
   }
-  
+
   .section-info, .jogadores-section {
     padding: 20px;
   }
-  
+
   .card-header {
     flex-wrap: wrap;
     gap: 15px;
   }
-  
+
   .player-avatar {
     margin-right: 0;
   }
-  
+
   .card-actions {
     width: 100%;
     justify-content: center;
   }
-  
+
   .info-row {
     flex-direction: column;
     align-items: flex-start;
     gap: 5px;
   }
-  
+
   .info-value {
     text-align: left;
     max-width: 100%;
   }
-  
+
   .modal-content {
     width: 95%;
   }
-  
+
   .modal-actions {
     flex-direction: column;
   }
-  
+
   .btn-cancel-modal,
   .btn-confirm-delete {
     width: 100%;
