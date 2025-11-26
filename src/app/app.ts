@@ -8,7 +8,7 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })
-export class App {
+export class AppComponent {
   title = 'Liga de Futebol';
 }
 
