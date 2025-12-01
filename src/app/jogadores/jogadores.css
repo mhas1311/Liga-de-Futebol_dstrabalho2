@@ -271,7 +271,16 @@
 }
 
 .card-body {
-  space-y: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Fallback for browsers that don't support gap on flex containers */
+@supports not (gap: 12px) {
+  .card-body > * + * {
+    margin-top: 12px;
+  }
 }
 
 .info-row {

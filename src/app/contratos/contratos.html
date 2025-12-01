@@ -38,7 +38,7 @@
         </div>
 
         <div class="contratos-grid" *ngIf="contratos.length > 0">
-          <div class="contrato-card" *ngFor="let contrato of contratos" 
+          <div class="contrato-card" *ngFor="let contrato of contratos"
                [class.contrato-vencido]="isContratoVencido(contrato.dataFim)">
             <div class="card-header">
               <div class="contract-icon">📄</div>
@@ -49,7 +49,7 @@
                 </span>
               </div>
             </div>
-            
+
             <div class="card-body">
               <div class="info-section" *ngIf="contrato.pessoa">
                 <h4>👤 Pessoa</h4>
@@ -71,7 +71,7 @@
                 </div>
                 <div class="info-row" *ngIf="contrato.time.cidade">
                   <span class="info-label">Cidade:</span>
-                  <span class="info-value">{{ contrato.time.cidade?.nome }}</span>
+                  <span class="info-value">{{ contrato.time.cidade.nome }}</span>
                 </div>
               </div>
 

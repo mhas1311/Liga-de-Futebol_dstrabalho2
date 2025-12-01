@@ -90,7 +90,7 @@ export class AdicionarJogadorComponent implements OnInit {
             this.isLoading = false;
             this.successMessage = 'Jogador adicionado com sucesso!';
             this.jogadorForm.reset();
-            
+
             // Redirecionar após 2 segundos
             setTimeout(() => {
               this.router.navigate(['/jogadores']);
@@ -99,7 +99,7 @@ export class AdicionarJogadorComponent implements OnInit {
           error: (error) => {
             this.isLoading = false;
             console.error('Erro ao adicionar jogador:', error);
-            this.errorMessage = 'Erro ao adicionar jogador. Verifique os dados e tente novamente.';
+            this.errorMessage = 'Erro ao adicionar jogador. Verifique os dados, se fez Login como Administrador e tente novamente.';
           }
         });
     } else {
