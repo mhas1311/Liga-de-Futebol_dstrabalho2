@@ -39,9 +39,9 @@
           <div class="form-row">
             <div class="form-group">
               <label for="nome">Nome Completo *</label>
-              <input 
-                type="text" 
-                id="nome" 
+              <input
+                type="text"
+                id="nome"
                 formControlName="nome"
                 [class.error]="isFieldInvalid('nome')"
                 placeholder="Digite o nome completo do jogador">
@@ -54,9 +54,9 @@
           <div class="form-row">
             <div class="form-group">
               <label for="cpf">CPF *</label>
-              <input 
-                type="text" 
-                id="cpf" 
+              <input
+                type="text"
+                id="cpf"
                 formControlName="cpf"
                 [class.error]="isFieldInvalid('cpf')"
                 placeholder="Digite apenas os números (11 dígitos)"
@@ -68,9 +68,9 @@
 
             <div class="form-group">
               <label for="dataNascimento">Data de Nascimento *</label>
-              <input 
-                type="date" 
-                id="dataNascimento" 
+              <input
+                type="date"
+                id="dataNascimento"
                 formControlName="dataNascimento"
                 [class.error]="isFieldInvalid('dataNascimento')">
               <div *ngIf="isFieldInvalid('dataNascimento')" class="field-error">
@@ -95,16 +95,16 @@
           </div>
 
           <div class="form-actions">
-            <button 
-              type="button" 
-              class="btn-cancel" 
+            <button
+              type="button"
+              class="btn-cancel"
               (click)="goBack()"
               [disabled]="isLoading">
               Cancelar
             </button>
-            <button 
-              type="submit" 
-              class="btn-submit" 
+            <button
+              type="submit"
+              class="btn-submit"
               [disabled]="isLoading || jogadorForm.invalid">
               <span *ngIf="isLoading" class="loading-spinner"></span>
               {{ isLoading ? 'Salvando...' : 'Salvar Alterações' }}
