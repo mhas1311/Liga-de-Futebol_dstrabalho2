@@ -3,7 +3,7 @@
 /* Acessibilidade global (Baixa Visão / Daltonismo / etc) */
 html.baixa-visao {
   /* aumenta root (rem) e melhora contraste */
-  font-size: 150% !important; /* aumenta tamanho base, respeita rem */
+  font-size: 250% !important; /* aumenta tamanho base, respeita rem */
   background-color: #ffffff !important;
   color: #000000 !important;
   filter: contrast(1.25) saturate(1.05) !important;
