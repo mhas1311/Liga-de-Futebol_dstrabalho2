@@ -84,6 +84,8 @@ export class WelcomeComponent implements OnInit {
 
   accessibilityMenuOpen = false;
   currentMode: 'padrao' | 'daltonismo' | 'baixa-visao' | 'pessoa-cega' = 'padrao';
+  showToast = false;
+  toastMessage = '';
 
   toggleAccessibilityMenu(): void {
     this.accessibilityMenuOpen = !this.accessibilityMenuOpen;
@@ -100,9 +102,22 @@ export class WelcomeComponent implements OnInit {
       this.renderer.addClass(document.documentElement, mode);
       if (persist) localStorage.setItem('accessibilityMode', mode);
       this.currentMode = mode;
+
+      // Notificação para modo Pessoa Cega
+      if (mode === 'pessoa-cega') {
+        this.showToastMessage('TabIndex globalmente implementado, pronto para uso com a tecnologia Text-to-Speech (TTS)!');
+      }
     }
 
     this.accessibilityMenuOpen = false;
+  }
+
+  showToastMessage(message: string): void {
+    this.toastMessage = message;
+    this.showToast = true;
+    setTimeout(() => {
+      this.showToast = false;
+    }, 8000); // desaparece após 8 segundos
   }
 }
 

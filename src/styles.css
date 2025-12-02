@@ -44,7 +44,6 @@ html.daltonismo {
 
 /* Pessoa cega — preferências para leitores de tela (exemplo) */
 html.pessoa-cega {
-  /*AQUI NAO PRECISA ADD NADA, SOMENTE FAZER O TAB INDEX*/
-  filter: grayscale(0.15) sepia(0.05) hue-rotate(-10deg) !important;
+
   /* mantenha acessível para leitores de tela; não altera visual fortemente */
 }
