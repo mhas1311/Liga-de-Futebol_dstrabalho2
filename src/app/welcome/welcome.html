@@ -2,13 +2,13 @@
   <div class="welcome-content">
     <header class="welcome-header">
       <h1>⚽ Liga de Futebol</h1>
-      <p class="subtitle">Sistema de Gerenciamento de Futebol</p>
+      <p class="subtitle">Sistema (Acessível) de Gerenciamento de Futebol</p>
     </header>
 
     <main class="main-sections">
       <div class="sections-grid">
         <div class="section-card" (click)="navigateToJogadores()">
-          <div class="card-icon">👤</div>
+          <div class="card-icon">👥</div>
           <h3>Jogadores</h3>
           <p>Gerenciar jogadores e suas informações</p>
         </div>
@@ -20,7 +20,7 @@
         </div>
 
         <div class="section-card" (click)="navigateToContratos()">
-          <div class="card-icon">📄</div>
+          <div class="card-icon">📝</div>
           <h3>Contratos</h3>
           <p>Gerenciar contratos de jogadores</p>
         </div>
@@ -48,10 +48,11 @@
     <!-- Accessibility floating button + menu -->
     <div class="accessibility-root">
       <button class="access-btn" aria-haspopup="true" [attr.aria-expanded]="accessibilityMenuOpen" (click)="toggleAccessibilityMenu()">
-        <img src="assets/media/acessibilidadeSimbolo.jpg" alt="Acessibilidade" />
+        <img src="assets/media/acessibilidadeSimbolo.jpg" alt="Acessibilidade" class="access-icon" />
       </button>
 
       <nav class="access-menu" *ngIf="accessibilityMenuOpen" role="menu" aria-label="Menu de acessibilidade">
+        <button role="menuitem" (click)="applyAccessibility('padrao')">Padrão</button>
         <button role="menuitem" (click)="applyAccessibility('daltonismo')">Daltonismo</button>
         <button role="menuitem" (click)="applyAccessibility('baixa-visao')">Baixa Visão</button>
         <button role="menuitem" (click)="applyAccessibility('pessoa-cega')">Pessoa Cega</button>

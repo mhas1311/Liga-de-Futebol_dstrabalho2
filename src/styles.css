@@ -1,1 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Acessibilidade global (Baixa Visão / Daltonismo / etc) */
+html.baixa-visao {
+  /* aumenta root (rem) e melhora contraste */
+  font-size: 150% !important; /* aumenta tamanho base, respeita rem */
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  filter: contrast(1.25) saturate(1.05) !important;
+}
+
+/* garante legibilidade de elementos do app */
+html.baixa-visao .welcome-container,
+html.baixa-visao .welcome-content,
+html.baixa-visao .section-card,
+html.baixa-visao button,
+html.baixa-visao .card-icon,
+html.baixa-visao .subtitle,
+html.baixa-visao h1,
+html.baixa-visao h3,
+html.baixa-visao p {
+  color: #000 !important;
+  font-weight: 600;
+}
+
+/* aumenta padding/tamanho de elementos clicáveis */
+html.baixa-visao .section-card,
+html.baixa-visao .access-menu button {
+  padding: 14px !important;
+  font-size: 1.05em !important;
+  border-radius: 8px !important;
+}
+
+/* foco mais visível */
+html.baixa-visao :focus {
+  outline: 3px solid rgba(0,0,0,0.9) !important;
+  outline-offset: 2px !important;
+}
+
+/* Daltonismo (exemplo leve) */
+html.daltonismo {
+  filter: grayscale(0.15) sepia(0.05) hue-rotate(-10deg) !important;
+}
+
+/* Pessoa cega — preferências para leitores de tela (exemplo) */
+html.pessoa-cega {
+  /*AQUI NAO PRECISA ADD NADA, SOMENTE FAZER O TAB INDEX*/
+  filter: grayscale(0.15) sepia(0.05) hue-rotate(-10deg) !important;
+  /* mantenha acessível para leitores de tela; não altera visual fortemente */
+}

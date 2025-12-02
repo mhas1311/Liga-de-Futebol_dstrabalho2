@@ -43,7 +43,7 @@ export class JogadoresComponent implements OnInit {
   loadJogadores() {
     this.isLoading = true;
     this.errorMessage = '';
-    
+
     this.http.get<Jogador[]>('https://liga-de-futebol-backend.onrender.com/pessoas')
       .subscribe({
         next: (jogadores) => {
@@ -79,14 +79,14 @@ export class JogadoresComponent implements OnInit {
     if (!this.jogadorParaExcluir) return;
 
     this.isExcluindo = true;
-    
+
     this.http.delete(`https://liga-de-futebol-backend.onrender.com/pessoas/${this.jogadorParaExcluir.id}`)
       .subscribe({
         next: () => {
           // Remover o jogador da lista local
           this.jogadores = this.jogadores.filter(j => j.id !== this.jogadorParaExcluir!.id);
           this.cancelarExclusao();
-          
+
           // Mostrar mensagem de sucesso (opcional)
           console.log('Jogador excluído com sucesso');
         },
@@ -116,11 +116,11 @@ export class JogadoresComponent implements OnInit {
     let idade = hoje.getFullYear() - nascimento.getFullYear();
     const mesAtual = hoje.getMonth();
     const mesNascimento = nascimento.getMonth();
-    
+
     if (mesAtual < mesNascimento || (mesAtual === mesNascimento && hoje.getDate() < nascimento.getDate())) {
       idade--;
     }
-    
+
     return idade;
   }
 }

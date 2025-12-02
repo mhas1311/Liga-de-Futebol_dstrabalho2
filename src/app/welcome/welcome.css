@@ -1,6 +1,6 @@
 .welcome-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #a6b2e6 0%, #8f7ca1 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -159,27 +159,46 @@
   z-index: 9999;
 }
 
-.access-btn{
-  width: 56px;
-  height: 56px;
+.access-btn {
+  position: relative; /* necessário para posicionar o badge */
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   border: none;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  background: #ffffff;
   padding: 6px;
-  cursor: pointer;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
 }
 
-.access-btn img{
-  max-width: 100%;
-  max-height: 100%;
-  display:block;
+.access-badge {
+  position: absolute;
+  right: -6px;
+  bottom: -6px;
+  background: #003a8c;
+  color: #fff;
+  font-size: 10px;
+  padding: 3px 6px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
-.access-menu{
+.access-btn:focus {
+  outline: 3px solid rgba(21,156,228,0.4);
+}
+
+.access-icon {
+  width: 127%;
+  height: 127%;
+  object-fit: cover; /* mantém proporção e preenche o botão */
+  display: block;
+}
+
+.access-menu {
   margin-bottom: 12px;
   display: flex;
   flex-direction: column;
@@ -192,13 +211,47 @@
 }
 
 /* Option buttons */
-.access-menu button{
+.access-menu button {
   background: #f5f5f5;
   border: none;
   padding: 8px 12px;
   border-radius: 6px;
   cursor: pointer;
   text-align: left;
+  transition: background-color 180ms ease, transform 120ms ease, box-shadow 180ms ease, color 120ms ease;
+  color: #073059;
+}
+
+.access-menu button:hover,
+.access-menu button:focus {
+  background-color: #e9f3ff; /* leve destaque azul */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+  outline: none;
+  color: #012a4a;
+}
+
+/* estilo específico para o botão "Fechar" */
+.access-menu .access-close {
+  background: #fff4f4;
+  color: #a80000;
+  font-weight: 600;
+}
+
+.access-menu .access-close:hover,
+.access-menu .access-close:focus {
+  background: #ffecec;
+  color: #800000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(160,0,0,0.06);
+}
+
+/* opcional: indicar botão ativo (modo atual) */
+.access-menu button.active,
+.access-menu button[aria-pressed="true"] {
+  background-color: #dfeffd;
+  box-shadow: inset 0 0 0 2px rgba(3,63,161,0.06);
+  color: #002a5c;
 }
 
 /* Mode visual adjustments (examples) */
@@ -207,15 +260,43 @@ body.daltonismo {
 }
 
 body.baixa-visao {
-  font-size: 1.12em;
-  --main-contrast: #000;
-  background-color: #fff !important;
-  color: #000 !important;
-  filter: contrast(1.25) saturate(1.05);
+  font-size: 1.25rem !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  filter: contrast(1.25) saturate(1.05) !important;
 }
 
-body.pessoa-cega {
-  /* Preferências para leitores de tela: alto contraste e foco visível */
-  outline: none;
+/* Ajustes adicionais para elementos comuns */
+body.baixa-visao .welcome-container,
+body.baixa-visao .welcome-content,
+body.baixa-visao .section-card,
+body.baixa-visao button,
+body.baixa-visao .card-icon,
+body.baixa-visao .subtitle,
+body.baixa-visao h1,
+body.baixa-visao h3 {
+  /* garantir legibilidade */
+  color: #000 !important;
+  font-weight: 600;
+}
+
+/* Aumenta padding e tamanho de botões e cards para melhor clique/tap */
+body.baixa-visao .section-card,
+body.baixa-visao .access-menu button {
+  padding: 14px !important;
+  font-size: 1.05em !important;
+  border-radius: 8px !important;
+}
+
+/* Links mais visíveis */
+body.baixa-visao a {
+  color: #003a8c !important;
+  text-decoration: underline !important;
+}
+
+/* Foco mais visível */
+body.baixa-visao :focus {
+  outline: 3px solid rgba(0,0,0,0.9);
+  outline-offset: 2px;
 }
 
