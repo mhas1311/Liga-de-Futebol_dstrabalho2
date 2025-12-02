@@ -300,3 +300,26 @@ body.baixa-visao :focus {
   outline-offset: 2px;
 }
 
+/* Foco visível para cards (Tab) */
+.section-card:focus {
+  outline: 3px solid rgba(21, 156, 228, 0.5);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(21, 156, 228, 0.2);
+  transform: translateY(-4px);
+}
+
+/* Foco visível para botões */
+button:focus {
+  outline: 3px solid rgba(21, 156, 228, 0.5);
+  outline-offset: 2px;
+}
+
+.access-btn:focus {
+  box-shadow: 0 0 0 3px rgba(21, 156, 228, 0.3);
+}
+
+.access-menu button:focus {
+  background-color: #e9f3ff;
+  transform: translateY(-2px);
+}
+

@@ -34,51 +34,53 @@
           </div>
         </div>
 
-        <div class="restricoes-grid" *ngIf="restricoes.length > 0">
-          <div class="restricao-card" *ngFor="let restricao of restricoes" 
-               [class.restricao-inativa]="!isRestricaoAtiva(restricao.dataFim)">
+        <!-- Cards de restrições -->
+        <div class="restricoes-grid">
+          <div *ngFor="let restricao of restricoes"
+               class="restricao-card"
+               [ngClass]="{ 'restricao-inativa': !restricao.ativa }"
+               tabindex="0"
+               role="article"
+               (keydown)="onCardKeydown($event, restricao)"
+               (click)="editarRestricao(restricao)">
             <div class="card-header">
-              <div class="restriction-icon">⚠️</div>
+              <div class="restriction-icon">🚫</div>
               <div class="restriction-basic-info">
-                <h3>Restrição #{{ restricao.id }}</h3>
-                <span class="status-badge" 
-                      [class.status-ativa]="isRestricaoAtiva(restricao.dataFim)"
-                      [class.status-inativa]="!isRestricaoAtiva(restricao.dataFim)">
-                  {{ isRestricaoAtiva(restricao.dataFim) ? 'Ativa' : 'Inativa' }}
+                <h3>{{ restricao.nomeJogador }}</h3>
+                <span class="status-badge" [ngClass]="restricao.ativa ? 'status-ativa' : 'status-inativa'">
+                  {{ restricao.ativa ? 'Ativa' : 'Inativa' }}
                 </span>
               </div>
             </div>
-            
+
             <div class="card-body">
-              <div class="info-section" *ngIf="restricao.jogador">
-                <h4>👤 Jogador</h4>
-                <div class="info-row">
-                  <span class="info-label">Nome:</span>
-                  <span class="info-value">{{ restricao.jogador.nome }}</span>
-                </div>
-                <div class="info-row">
-                  <span class="info-label">CPF:</span>
-                  <span class="info-value">{{ restricao.jogador.cpf || 'Não informado' }}</span>
-                </div>
+              <div class="info-section">
+                <h4>Motivo</h4>
+                <p>{{ restricao.motivo }}</p>
               </div>
 
               <div class="info-section">
-                <h4>📋 Detalhes da Restrição</h4>
+                <h4>Datas</h4>
                 <div class="info-row">
-                  <span class="info-label">Descrição:</span>
-                  <span class="info-value">{{ restricao.descricao || 'Não informado' }}</span>
+                  <strong>Início:</strong> {{ restricao.dataInicio | date: 'dd/MM/yyyy' }}
                 </div>
                 <div class="info-row">
-                  <span class="info-label">Data de Início:</span>
-                  <span class="info-value">{{ formatarData(restricao.dataInicio) }}</span>
+                  <strong>Fim:</strong> {{ restricao.dataFim | date: 'dd/MM/yyyy' }}
                 </div>
-                <div class="info-row">
-                  <span class="info-label">Data de Fim:</span>
-                  <span class="info-value">{{ restricao.dataFim ? formatarData(restricao.dataFim) : 'Indefinida' }}</span>
-                </div>
+              </div>
+
+              <!-- Botões de ação -->
+              <div class="action-buttons">
+                <button tabindex="0" (click)="deletarRestricao(restricao.id)" class="btn btn-delete">Deletar</button>
               </div>
             </div>
           </div>
+        </div>
+
+        <!-- Botões de controle -->
+        <div class="button-group">
+          <button tabindex="0" (click)="novaRestricao()" class="btn btn-primary">+ Nova Restrição</button>
+          <button tabindex="0" (click)="voltar()" class="btn btn-secondary">Voltar</button>
         </div>
 
         <div *ngIf="restricoes.length === 0" class="no-data">

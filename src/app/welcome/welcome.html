@@ -7,37 +7,37 @@
 
     <main class="main-sections">
       <div class="sections-grid">
-        <div class="section-card" (click)="navigateToJogadores()">
+        <div class="section-card" tabindex="0" role="button" (click)="navigateToJogadores()" (keydown)="onCardKeydown($event, 'jogadores')">
           <div class="card-icon">👥</div>
           <h3>Jogadores</h3>
           <p>Gerenciar jogadores e suas informações</p>
         </div>
 
-        <div class="section-card" (click)="navigateToTimes()">
+        <div class="section-card" tabindex="0" role="button" (click)="navigateToTimes()" (keydown)="onCardKeydown($event, 'times')">
           <div class="card-icon">🏆</div>
           <h3>Times</h3>
           <p>Visualizar e gerenciar times cadastrados</p>
         </div>
 
-        <div class="section-card" (click)="navigateToContratos()">
+        <div class="section-card" tabindex="0" role="button" (click)="navigateToContratos()" (keydown)="onCardKeydown($event, 'contratos')">
           <div class="card-icon">📝</div>
           <h3>Contratos</h3>
           <p>Gerenciar contratos de jogadores</p>
         </div>
 
-        <div class="section-card" (click)="navigateToJogadorRestricoes()">
+        <div class="section-card" tabindex="0" role="button" (click)="navigateToJogadorRestricoes()" (keydown)="onCardKeydown($event, 'jogador-restricoes')">
           <div class="card-icon">⚠️</div>
           <h3>Restrições de Jogadores</h3>
           <p>Visualizar restrições de jogadores</p>
         </div>
 
-        <div class="section-card" (click)="navigateToTimeRestricoes()">
+        <div class="section-card" tabindex="0" role="button" (click)="navigateToTimeRestricoes()" (keydown)="onCardKeydown($event, 'time-restricoes')">
           <div class="card-icon">🚫</div>
           <h3>Restrições de Times</h3>
           <p>Visualizar restrições de times</p>
         </div>
 
-        <div class="section-card login-card" (click)="navigateToLogin()">
+        <div class="section-card login-card" tabindex="0" role="button" (click)="navigateToLogin()" (keydown)="onCardKeydown($event, 'login')">
           <div class="card-icon">🔐</div>
           <h3>Fazer Login</h3>
           <p>Acessar área administrativa</p>
@@ -47,16 +47,16 @@
 
     <!-- Accessibility floating button + menu -->
     <div class="accessibility-root">
-      <button class="access-btn" aria-haspopup="true" [attr.aria-expanded]="accessibilityMenuOpen" (click)="toggleAccessibilityMenu()">
+      <button class="access-btn" tabindex="0" aria-haspopup="true" [attr.aria-expanded]="accessibilityMenuOpen" (click)="toggleAccessibilityMenu()">
         <img src="assets/media/acessibilidadeSimbolo.jpg" alt="Acessibilidade" class="access-icon" />
       </button>
 
       <nav class="access-menu" *ngIf="accessibilityMenuOpen" role="menu" aria-label="Menu de acessibilidade">
-        <button role="menuitem" (click)="applyAccessibility('padrao')">Padrão</button>
-        <button role="menuitem" (click)="applyAccessibility('daltonismo')">Daltonismo</button>
-        <button role="menuitem" (click)="applyAccessibility('baixa-visao')">Baixa Visão</button>
-        <button role="menuitem" (click)="applyAccessibility('pessoa-cega')">Pessoa Cega</button>
-        <button class="access-close" (click)="toggleAccessibilityMenu()" aria-label="Fechar menu">Fechar</button>
+        <button tabindex="0" role="menuitem" (click)="applyAccessibility('padrao')">Padrão</button>
+        <button tabindex="0" role="menuitem" (click)="applyAccessibility('daltonismo')">Daltonismo</button>
+        <button tabindex="0" role="menuitem" (click)="applyAccessibility('baixa-visao')">Baixa Visão</button>
+        <button tabindex="0" role="menuitem" (click)="applyAccessibility('pessoa-cega')">Pessoa Cega</button>
+        <button tabindex="0" class="access-close" (click)="toggleAccessibilityMenu()" aria-label="Fechar menu">Fechar</button>
       </nav>
     </div>
 

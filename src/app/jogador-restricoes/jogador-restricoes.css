@@ -322,6 +322,93 @@
   font-size: 1.1rem;
 }
 
+/* Foco visível para acessibilidade (Tab) */
+.restricao-card:focus,
+button:focus {
+  outline: 3px solid rgba(21, 156, 228, 0.5);
+  outline-offset: 2px;
+}
+
+.restricao-card:focus {
+  box-shadow: 0 0 0 4px rgba(21, 156, 228, 0.2);
+  cursor: pointer;
+}
+
+button:focus {
+  box-shadow: 0 0 0 3px rgba(21, 156, 228, 0.3);
+}
+
+/* Melhora hover + estado foco */
+.restricao-card:hover,
+.restricao-card:focus {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Estilo para o grupo de botões */
+.button-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 200ms ease;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background-color: #545b62;
+  transform: translateY(-2px);
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: white;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+}
+
+.btn-delete:hover,
+.btn-delete:focus {
+  background-color: #c82333;
+  transform: translateY(-1px);
+}
+
+/* Suporte a Pessoa Cega (modo acessibilidade) */
+html.pessoa-cega .restricao-card:focus {
+  outline: 4px solid #000 !important;
+  outline-offset: 3px !important;
+}
+
+html.pessoa-cega button:focus {
+  outline: 4px solid #000 !important;
+  outline-offset: 2px !important;
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
   .header-content {

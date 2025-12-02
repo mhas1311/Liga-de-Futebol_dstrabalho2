@@ -14,9 +14,7 @@ export class WelcomeComponent implements OnInit {
   constructor(
     private router: Router,
     private renderer: Renderer2
-  ) {
-    // construtor sem aplicar diretamente o modo (será feito em ngOnInit após validação)
-  }
+  ) {}
 
   ngOnInit(): void {
     type Mode = 'padrao' | 'daltonismo' | 'baixa-visao' | 'pessoa-cega';
@@ -24,13 +22,40 @@ export class WelcomeComponent implements OnInit {
 
     const saved = localStorage.getItem('accessibilityMode');
     if (saved && allowed.includes(saved as Mode)) {
-      // chama applyAccessibility com tipo seguro; não persiste novamente (persist = false)
       this.applyAccessibility(saved as Mode, false);
     }
   }
 
-  navigateToLogin() {
-    this.router.navigate(['/login']);
+  // Trata eventos de teclado nos cards (Enter/Space)
+  onCardKeydown(event: KeyboardEvent, route: string): void {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.navigateByRoute(route);
+    }
+  }
+
+  // Navega para rota por string
+  private navigateByRoute(route: string): void {
+    switch (route) {
+      case 'jogadores':
+        this.navigateToJogadores();
+        break;
+      case 'times':
+        this.navigateToTimes();
+        break;
+      case 'contratos':
+        this.navigateToContratos();
+        break;
+      case 'jogador-restricoes':
+        this.navigateToJogadorRestricoes();
+        break;
+      case 'time-restricoes':
+        this.navigateToTimeRestricoes();
+        break;
+      case 'login':
+        this.navigateToLogin();
+        break;
+    }
   }
 
   navigateToJogadores() {
@@ -53,6 +78,10 @@ export class WelcomeComponent implements OnInit {
     this.router.navigate(['/time-restricoes']);
   }
 
+  navigateToLogin() {
+    this.router.navigate(['/login']);
+  }
+
   accessibilityMenuOpen = false;
   currentMode: 'padrao' | 'daltonismo' | 'baixa-visao' | 'pessoa-cega' = 'padrao';
 
@@ -62,20 +91,17 @@ export class WelcomeComponent implements OnInit {
 
   applyAccessibility(mode: 'padrao' | 'daltonismo' | 'baixa-visao' | 'pessoa-cega', persist = true): void {
     const modes = ['daltonismo', 'baixa-visao', 'pessoa-cega'];
-    // remove classes do elemento root (<html>)
     modes.forEach(m => this.renderer.removeClass(document.documentElement, m));
 
     if (mode === 'padrao') {
       if (persist) localStorage.removeItem('accessibilityMode');
       this.currentMode = 'padrao';
     } else {
-      // aplica no elemento <html> para que rem / regras globais funcionem
       this.renderer.addClass(document.documentElement, mode);
       if (persist) localStorage.setItem('accessibilityMode', mode);
       this.currentMode = mode;
     }
 
-    // fecha menu
     this.accessibilityMenuOpen = false;
   }
 }

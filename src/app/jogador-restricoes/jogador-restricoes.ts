@@ -11,10 +11,11 @@ export interface Jogador {
 
 export interface JogadorRestricao {
   id: number;
-  descricao: string;
-  dataInicio: string;
-  dataFim?: string;
-  jogador?: Jogador;
+  nomeJogador: string;
+  motivo: string;
+  dataInicio: Date;
+  dataFim: Date;
+  ativa: boolean; // adicione esta linha
 }
 
 @Component({
@@ -69,6 +70,47 @@ export class JogadorRestricoesComponent implements OnInit {
     const hoje = new Date();
     const fim = new Date(dataFim);
     return fim >= hoje;
+  }
+
+  /**
+   * Trata eventos de teclado nos cards (Enter/Space)
+   */
+  onCardKeydown(event: KeyboardEvent, restricao: any): void {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.editarRestricao(restricao);
+    }
+  }
+
+  /**
+   * Edita uma restrição
+   */
+  editarRestricao(restricao: any): void {
+    console.log('Editando restrição:', restricao);
+    // implementar lógica de edição (modal/navigate/etc)
+  }
+
+  /**
+   * Deleta uma restrição
+   */
+  deletarRestricao(id: number): void {
+    console.log('Deletando restrição:', id);
+    // implementar lógica de deleção
+  }
+
+  /**
+   * Cria nova restrição
+   */
+  novaRestricao(): void {
+    console.log('Nova restrição');
+    // implementar lógica de criação
+  }
+
+  /**
+   * Volta à página anterior
+   */
+  voltar(): void {
+    // this.router.back() ou navigate(['welcome'])
   }
 }
 
