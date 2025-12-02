@@ -106,20 +106,20 @@
   .welcome-header h1 {
     font-size: 2.5rem;
   }
-  
+
   .subtitle {
     font-size: 1.1rem;
   }
-  
+
   .sections-grid {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  
+
   .section-card {
     padding: 25px 15px;
   }
-  
+
   .card-icon {
     font-size: 2.5rem;
   }
@@ -129,25 +129,93 @@
   .welcome-container {
     padding: 15px;
   }
-  
+
   .welcome-header h1 {
     font-size: 2rem;
   }
-  
+
   .subtitle {
     font-size: 1rem;
   }
-  
+
   .section-card {
     padding: 20px 15px;
   }
-  
+
   .section-card h3 {
     font-size: 1.3rem;
   }
-  
+
   .section-card p {
     font-size: 0.9rem;
   }
+}
+
+/* Accessibility */
+.accessibility-root {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9999;
+}
+
+.access-btn{
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  background: #ffffff;
+  padding: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.access-btn img{
+  max-width: 100%;
+  max-height: 100%;
+  display:block;
+}
+
+.access-menu{
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transform-origin: bottom right;
+}
+
+/* Option buttons */
+.access-menu button{
+  background: #f5f5f5;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: left;
+}
+
+/* Mode visual adjustments (examples) */
+body.daltonismo {
+  filter: grayscale(0.15) sepia(0.05) hue-rotate(-10deg);
+}
+
+body.baixa-visao {
+  font-size: 1.12em;
+  --main-contrast: #000;
+  background-color: #fff !important;
+  color: #000 !important;
+  filter: contrast(1.25) saturate(1.05);
+}
+
+body.pessoa-cega {
+  /* Preferências para leitores de tela: alto contraste e foco visível */
+  outline: none;
 }
 
