@@ -53,7 +53,20 @@
 
       <nav class="access-menu" *ngIf="accessibilityMenuOpen" role="menu" aria-label="Menu de acessibilidade">
         <button tabindex="0" role="menuitem" (click)="applyAccessibility('padrao')">Padrão</button>
-        <button tabindex="0" role="menuitem" (click)="applyAccessibility('daltonismo')">Daltonismo</button>
+
+        <!-- Submenu Daltonismo -->
+        <div class="submenu-container">
+          <button tabindex="0" role="menuitem" (click)="toggleDaltonismoSubmenu()" class="submenu-toggle">
+            Daltonismo ▼
+          </button>
+          <div class="submenu" *ngIf="daltonismoSubmenuOpen" role="menu">
+            <button tabindex="0" role="menuitem" (click)="applyAccessibility('daltonismo-protanopia')">Protanopia (Vermelho)</button>
+            <button tabindex="0" role="menuitem" (click)="applyAccessibility('daltonismo-deuteranopia')">Deuteranopia (Verde)</button>
+            <button tabindex="0" role="menuitem" (click)="applyAccessibility('daltonismo-tritanopia')">Tritanopia (Azul)</button>
+            <button tabindex="0" role="menuitem" (click)="applyAccessibility('daltonismo-monocromatico')">Monocromático</button>
+          </div>
+        </div>
+
         <button tabindex="0" role="menuitem" (click)="applyAccessibility('baixa-visao')">Baixa Visão</button>
         <button tabindex="0" role="menuitem" (click)="applyAccessibility('pessoa-cega')">Pessoa Cega</button>
         <button tabindex="0" class="access-close" (click)="toggleAccessibilityMenu()" aria-label="Fechar menu">Fechar</button>
@@ -72,4 +85,36 @@
     </footer>
   </div>
 </div>
+
+<!-- SVG Filters para simulação de daltonismo -->
+<svg style="display: none;">
+  <defs>
+    <!-- Protanopia (vermelho) -->
+    <filter id="protanopia-filter">
+      <feColorMatrix type="matrix" values="
+        0.567, 0.433, 0.000, 0, 0
+        0.558, 0.442, 0.000, 0, 0
+        0.000, 0.242, 0.758, 0, 0
+        0.000, 0.000, 0.000, 1, 0"/>
+    </filter>
+
+    <!-- Deuteranopia (verde) -->
+    <filter id="deuteranopia-filter">
+      <feColorMatrix type="matrix" values="
+        0.625, 0.375, 0.000, 0, 0
+        0.700, 0.300, 0.000, 0, 0
+        0.000, 0.300, 0.700, 0, 0
+        0.000, 0.000, 0.000, 1, 0"/>
+    </filter>
+
+    <!-- Tritanopia (azul) -->
+    <filter id="tritanopia-filter">
+      <feColorMatrix type="matrix" values="
+        0.950, 0.050, 0.000, 0, 0
+        0.000, 0.433, 0.567, 0, 0
+        0.000, 0.475, 0.525, 0, 0
+        0.000, 0.000, 0.000, 1, 0"/>
+    </filter>
+  </defs>
+</svg>
 

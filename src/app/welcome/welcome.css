@@ -354,3 +354,86 @@ button:focus {
   font-size: 1.5rem;
 }
 
+/* Submenu Daltonismo */
+.submenu-container {
+  position: relative;
+}
+
+.submenu-toggle {
+  width: 100%;
+  text-align: left;
+  background: #f5f5f5;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 180ms ease;
+  color: #073059;
+}
+
+.submenu-toggle:hover,
+.submenu-toggle:focus {
+  background-color: #e9f3ff;
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.submenu {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+  margin-left: 12px;
+  padding-left: 8px;
+  border-left: 3px solid #007bff;
+}
+
+.submenu button {
+  background: #e9f3ff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: left;
+  font-size: 0.9rem;
+  color: #003a8c;
+  transition: all 150ms ease;
+}
+
+.submenu button:hover,
+.submenu button:focus {
+  background: #d1e7ff;
+  transform: translateX(4px);
+  outline: none;
+}
+
+/* Simulações de Daltonismo */
+html.daltonismo-protanopia {
+  filter: url(#protanopia-filter);
+}
+
+html.daltonismo-deuteranopia {
+  filter: url(#deuteranopia-filter);
+}
+
+html.daltonismo-tritanopia {
+  filter: url(#tritanopia-filter);
+}
+
+html.daltonismo-monocromatico {
+  filter: grayscale(100%) contrast(1.1);
+}
+
+/* Fallback via CSS filters (aproximação) */
+html.daltonismo-protanopia {
+  filter: sepia(0.3) hue-rotate(-30deg) saturate(0.5);
+}
+
+html.daltonismo-deuteranopia {
+  filter: sepia(0.3) hue-rotate(40deg) saturate(0.4);
+}
+
+html.daltonismo-tritanopia {
+  filter: sepia(0.3) hue-rotate(90deg) saturate(0.5);
+}
+

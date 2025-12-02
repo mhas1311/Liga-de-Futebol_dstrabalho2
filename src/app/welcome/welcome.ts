@@ -10,6 +10,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./welcome.css']
 })
 export class WelcomeComponent implements OnInit {
+  accessibilityMenuOpen = false;
+  daltonismoSubmenuOpen = false;
+  currentMode: 'padrao' | 'daltonismo-protanopia' | 'daltonismo-deuteranopia' | 'daltonismo-tritanopia' | 'daltonismo-monocromatico' | 'baixa-visao' | 'pessoa-cega' = 'padrao';
+  showToast = false;
+  toastMessage = '';
 
   constructor(
     private router: Router,
@@ -17,13 +22,24 @@ export class WelcomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    type Mode = 'padrao' | 'daltonismo' | 'baixa-visao' | 'pessoa-cega';
-    const allowed: Mode[] = ['padrao', 'daltonismo', 'baixa-visao', 'pessoa-cega'];
+    type Mode = 'padrao' | 'daltonismo-protanopia' | 'daltonismo-deuteranopia' | 'daltonismo-tritanopia' | 'daltonismo-monocromatico' | 'baixa-visao' | 'pessoa-cega';
+    const allowed: Mode[] = ['padrao', 'daltonismo-protanopia', 'daltonismo-deuteranopia', 'daltonismo-tritanopia', 'daltonismo-monocromatico', 'baixa-visao', 'pessoa-cega'];
 
     const saved = localStorage.getItem('accessibilityMode');
     if (saved && allowed.includes(saved as Mode)) {
       this.applyAccessibility(saved as Mode, false);
     }
+  }
+
+  toggleAccessibilityMenu(): void {
+    this.accessibilityMenuOpen = !this.accessibilityMenuOpen;
+    if (this.accessibilityMenuOpen) {
+      this.daltonismoSubmenuOpen = false;
+    }
+  }
+
+  toggleDaltonismoSubmenu(): void {
+    this.daltonismoSubmenuOpen = !this.daltonismoSubmenuOpen;
   }
 
   // Trata eventos de teclado nos cards (Enter/Space)
@@ -82,17 +98,8 @@ export class WelcomeComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  accessibilityMenuOpen = false;
-  currentMode: 'padrao' | 'daltonismo' | 'baixa-visao' | 'pessoa-cega' = 'padrao';
-  showToast = false;
-  toastMessage = '';
-
-  toggleAccessibilityMenu(): void {
-    this.accessibilityMenuOpen = !this.accessibilityMenuOpen;
-  }
-
-  applyAccessibility(mode: 'padrao' | 'daltonismo' | 'baixa-visao' | 'pessoa-cega', persist = true): void {
-    const modes = ['daltonismo', 'baixa-visao', 'pessoa-cega'];
+  applyAccessibility(mode: 'padrao' | 'daltonismo-protanopia' | 'daltonismo-deuteranopia' | 'daltonismo-tritanopia' | 'daltonismo-monocromatico' | 'baixa-visao' | 'pessoa-cega', persist = true): void {
+    const modes = ['daltonismo-protanopia', 'daltonismo-deuteranopia', 'daltonismo-tritanopia', 'daltonismo-monocromatico', 'baixa-visao', 'pessoa-cega'];
     modes.forEach(m => this.renderer.removeClass(document.documentElement, m));
 
     if (mode === 'padrao') {
@@ -105,11 +112,12 @@ export class WelcomeComponent implements OnInit {
 
       // Notificação para modo Pessoa Cega
       if (mode === 'pessoa-cega') {
-        this.showToastMessage('TabIndex globalmente implementado, pronto para uso com a tecnologia Text-to-Speech (TTS)!');
+        this.showToastMessage('Tab Index implementado, pronto para uso com Text to Speech!');
       }
     }
 
     this.accessibilityMenuOpen = false;
+    this.daltonismoSubmenuOpen = false;
   }
 
   showToastMessage(message: string): void {
@@ -117,7 +125,7 @@ export class WelcomeComponent implements OnInit {
     this.showToast = true;
     setTimeout(() => {
       this.showToast = false;
-    }, 8000); // desaparece após 8 segundos
+    }, 4000);
   }
 }
 
