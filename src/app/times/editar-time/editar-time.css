@@ -277,31 +277,116 @@
     gap: 20px;
     text-align: center;
   }
-  
+
   .header-content h1 {
     font-size: 2rem;
   }
-  
+
   .content-wrapper {
     padding: 0 15px;
   }
-  
+
   .form-section {
     padding: 25px;
   }
-  
+
   .form-row:has(.form-group:nth-child(2)) {
     grid-template-columns: 1fr;
   }
-  
+
   .form-actions {
     flex-direction: column;
   }
-  
+
   .btn-cancel,
   .btn-submit {
     width: 100%;
     justify-content: center;
   }
 }
+/* Aplicar filtro apenas no container */
+body.daltonismo-protanopia .welcome-container,
+body.daltonismo-protanopia .login-container,
+body.daltonismo-protanopia .contratos-container,
+body.daltonismo-protanopia .editar-contrato-container,
+body.daltonismo-protanopia .adicionar-contrato-container,
+body.daltonismo-protanopia .home-container,
+body.daltonismo-protanopia .jogadores-container,
+body.daltonismo-protanopia .editar-jogador-container,
+body.daltonismo-protanopia .adicionar-jogador-container,
+body.daltonismo-protanopia .times-container,
+body.daltonismo-protanopia .adicionar-time-container,
+body.daltonismo-protanopia .editar-time-container,
+body.daltonismo-protanopia .restricoes-container {
+  filter: url(#protanopia-filter) !important;
+}
 
+body.daltonismo-deuteranopia .welcome-container,
+body.daltonismo-deuteranopia .login-container,
+body.daltonismo-deuteranopia .contratos-container,
+body.daltonismo-deuteranopia .editar-contrato-container,
+body.daltonismo-deuteranopia .adicionar-contrato-container,
+body.daltonismo-deuteranopia .home-container,
+body.daltonismo-deuteranopia .jogadores-container,
+body.daltonismo-deuteranopia .editar-jogador-container,
+body.daltonismo-deuteranopia .adicionar-jogador-container,
+body.daltonismo-deuteranopia .times-container,
+body.daltonismo-deuteranopia .adicionar-time-container,
+body.daltonismo-deuteranopia .editar-time-container,
+body.daltonismo-deuteranopia .restricoes-container {
+  filter: url(#deuteranopia-filter) !important;
+}
+
+body.daltonismo-tritanopia .welcome-container,
+body.daltonismo-tritanopia .login-container,
+body.daltonismo-tritanopia .contratos-container,
+body.daltonismo-tritanopia .editar-contrato-container,
+body.daltonismo-tritanopia .adicionar-contrato-container,
+body.daltonismo-tritanopia .home-container,
+body.daltonismo-tritanopia .jogadores-container,
+body.daltonismo-tritanopia .editar-jogador-container,
+body.daltonismo-tritanopia .adicionar-jogador-container,
+body.daltonismo-tritanopia .times-container,
+body.daltonismo-tritanopia .adicionar-time-container,
+body.daltonismo-tritanopia .editar-time-container,
+body.daltonismo-tritanopia .restricoes-container {
+  filter: url(#tritanopia-filter) !important;
+}
+
+body.daltonismo-monocromatico .welcome-container,
+body.daltonismo-monocromatico .login-container,
+body.daltonismo-monocromatico .contratos-container,
+body.daltonismo-monocromatico .editar-contrato-container,
+body.daltonismo-monocromatico .adicionar-contrato-container,
+body.daltonismo-monocromatico .home-container,
+body.daltonismo-monocromatico .jogadores-container,
+body.daltonismo-monocromatico .editar-jogador-container,
+body.daltonismo-monocromatico .adicionar-jogador-container,
+body.daltonismo-monocromatico .times-container,
+body.daltonismo-monocromatico .adicionar-time-container,
+body.daltonismo-monocromatico .editar-time-container,
+body.daltonismo-monocromatico .restricoes-container {
+  filter: grayscale(100%) contrast(1.2) !important;
+}
+
+/* Garantir que o container pode receber filtro */
+.welcome-container,
+.login-container,
+.contratos-container,
+.editar-contrato-container,
+.adicionar-contrato-container,
+.home-container,
+.jogadores-container,
+.editar-jogador-container,
+.adicionar-jogador-container,
+.times-container,
+.adicionar-time-container,
+.editar-time-container,
+.restricoes-container {
+  width: 100%;
+  min-height: 100vh;
+  /* Importante: */
+  transform: translateZ(0);
+  will-change: filter;
+  isolation: isolate;
+}
