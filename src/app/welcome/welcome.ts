@@ -100,7 +100,59 @@ export class WelcomeComponent implements OnInit {
 
   applyAccessibility(mode: 'padrao' | 'daltonismo-protanopia' | 'daltonismo-deuteranopia' | 'daltonismo-tritanopia' | 'daltonismo-monocromatico' | 'baixa-visao' | 'pessoa-cega', persist = true): void {
     const modes = ['daltonismo-protanopia', 'daltonismo-deuteranopia', 'daltonismo-tritanopia', 'daltonismo-monocromatico', 'baixa-visao', 'pessoa-cega'];
-    modes.forEach(m => this.renderer.removeClass(document.documentElement, m));
+    modes.forEach(m => {
+    this.renderer.removeClass(document.body, m);
+    this.renderer.removeClass(document.documentElement, m);
+  });
+
+// Encontrar container
+  const container = document.querySelector('.welcome-container, .login-container, .contratos-container, .jogadores-container, .times-container, .jogador-restricoes-container, .time-restricoes-container');
+
+  if (mode === 'padrao') {
+    // Resetar tudo
+    if (container) {
+      this.renderer.setStyle(container, 'filter', 'none');
+    }
+    this.renderer.setStyle(document.body, 'filter', 'none');
+
+    if (persist) localStorage.removeItem('accessibilityMode');
+    this.currentMode = 'padrao';
+    this.showToastMessage('Modo padrão restaurado');
+
+  } else {
+    // Aplicar classe no body
+    this.renderer.addClass(document.body, mode);
+
+    // Aplicar filtro DIRETAMENTE no container
+    if (mode.startsWith('daltonismo-') && container) {
+      const filterType = mode.replace('daltonismo-', '');
+      let filterValue = '';
+
+      switch(filterType) {
+        case 'protanopia':
+          filterValue = 'url(#protanopia-filter)';
+          break;
+        case 'deuteranopia':
+          filterValue = 'url(#deuteranopia-filter)';
+          break;
+        case 'tritanopia':
+          filterValue = 'url(#tritanopia-filter)';
+          break;
+        case 'monocromatico':
+          filterValue = 'grayscale(100%) contrast(1.2)';
+          break;
+      }
+
+      this.renderer.setStyle(container, 'filter', filterValue);
+      console.log(`Filtro aplicado no container: ${filterValue}`);
+    }
+
+    if (persist) localStorage.setItem('accessibilityMode', mode);
+    this.currentMode = mode;
+
+    this.showToastMessage(`Modo ${this.getModeName(mode)} ativado`);
+  }
+
 
     if (mode === 'padrao') {
       if (persist) localStorage.removeItem('accessibilityMode');
@@ -112,12 +164,22 @@ export class WelcomeComponent implements OnInit {
 
       // Notificação para modo Pessoa Cega
       if (mode === 'pessoa-cega') {
-        this.showToastMessage('Tab Index implementado, pronto para uso com Text to Speech!');
+        this.showToastMessage('TabIndex implementado globalmente, pronto para uso com a tecnologia Text to Speech!');
       }
     }
 
     this.accessibilityMenuOpen = false;
     this.daltonismoSubmenuOpen = false;
+  }
+
+private getModeName(mode: string): string {
+    const modeNames: { [key: string]: string } = {
+      'daltonismo-protanopia': 'Protanopia (Vermelho)',
+      'daltonismo-deuteranopia': 'Deuteranopia (Verde)',
+      'daltonismo-tritanopia': 'Tritanopia (Azul)',
+      'daltonismo-monocromatico': 'Monocromático'
+    };
+    return modeNames[mode] || mode;
   }
 
   showToastMessage(message: string): void {
